@@ -1,0 +1,25 @@
+@import './default.less';
+
+.container {
+    display: flex;
+
+    .nav-left {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 12.5%;
+        min-height: 180px;
+        height: calc(100vh);
+        background: #001529;
+        // overflow: hidden;
+    }
+    .main {
+        flex: 1;
+        background-color: @colorL;
+        margin-left: 12.5%;
+        overflow: hidden;
+    }
+    .content {
+        padding: 20px;
+    }
+}
