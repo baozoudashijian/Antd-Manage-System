@@ -12,6 +12,7 @@ import Tab from './pages/ui/tab';
 import Gallery from './pages/ui/gallery';
 import Carousels from './pages/ui/carousel';
 import FromLogin from './pages/form/login';
+import FormRegister from './pages/form/register';
 import NoMatch from './pages/nomatch';
 import Home from './pages/home';
 
@@ -26,7 +27,8 @@ class IRouter extends React.Component {
                         <Route path="/admin" render={() => 
                             <Admin>
                                 <Switch>
-                                    <Route path="/admin/admin/home" exact component={Home} />
+                                    <Route path="/admin" exact component={Home} />
+                                    <Route path="/admin/admin/home"  component={Home} />
                                     <Route path="/admin/ui/buttons" component={Buttons} />
                                     <Route path="/admin/ui/modals" component={Modals} />
                                     <Route path="/admin/ui/loadings" component={Loading} />
@@ -36,6 +38,7 @@ class IRouter extends React.Component {
                                     <Route path="/admin/ui/gallery" component={Gallery} />
                                     <Route path="/admin/ui/carousel" component={Carousels} />
                                     <Route path="/admin/form/login" component={FromLogin} />
+                                    <Route path="/admin/form/reg" component={FormRegister} />
                                     <Route component={NoMatch} />
                                 </Switch> 
                             </Admin>
