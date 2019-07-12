@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import App from './App.js';
 import Admin from './Admin';
+import Common from './common';
 import Login from './pages/login';
 import Buttons from './pages/ui/buttons';
 import Modals from './pages/ui/modals';
@@ -16,6 +17,8 @@ import FormRegister from './pages/form/register';
 import BasicTable from './pages/table/basicTable';
 import HighTable from './pages/table/highTable';
 import City from './pages/city';
+import Order from './pages/order';
+import OrderDetail from './pages/order/detail';
 import NoMatch from './pages/nomatch';
 import Home from './pages/home';
 
@@ -26,7 +29,7 @@ class IRouter extends React.Component {
             <HashRouter>
                 <App>
                     <Switch>
-                        <Route path="/login" component={Login} />
+                        <Route path="/" exact component={Login} />
                         <Route path="/admin" render={() => 
                             <Admin>
                                 <Switch>
@@ -45,12 +48,19 @@ class IRouter extends React.Component {
                                     <Route path="/admin/table/basic" component={BasicTable} />
                                     <Route path="/admin/table/high" component={HighTable} />
                                     <Route path="/admin/city" component={City} />
+                                    <Route path="/admin/order" component={Order} />
                                     <Route component={NoMatch} />
                                 </Switch> 
                             </Admin>
                         } />
-                        <Route path="/order/detail" component={Login} />
-                        <Route component={NoMatch} />
+                        <Route path="/common" render={() =>
+                            <Common>
+                                <Switch>
+                                    <Route path="/common/order/detail/:orderId" component={OrderDetail}  />
+                                </Switch>
+                            </Common>
+                        } />
+                        <Route component={NoMatch} component={NoMatch} />
                     </Switch>
                 </App>
             </HashRouter>

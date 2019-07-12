@@ -5,11 +5,14 @@ import Util from '../../utils/utils';
 import axios from '../../axios';
 
 class Header extends React.Component {
-
+    static defaultProps = {
+        userName: '张荣杰'
+    }
+    state = {
+        sysTime: ''
+    }
     componentWillMount() {
-        this.setState({
-            userName: '张荣杰'
-        });
+        
         setInterval(() => {
             let sysTime = Util.formateDate(new Date().getTime());
 
@@ -36,26 +39,43 @@ class Header extends React.Component {
         })
     }
     render() {
+        const hasBrandCrumb = this.props.nobrandcrumb;
         return (
             <div className="header">
-                <Row className="header-top">
-                    <Col span={24}>
-                        <span>欢迎，{this.state.userName}</span>
+                {console.log(hasBrandCrumb)}
+                <Row className={'header-top ' + (hasBrandCrumb ? 'header-top-bg': '') } >
+                    {
+                        hasBrandCrumb ? 
+                            <Col span={12} style={{textAlign: 'left'}}>
+                                <img className="logo" src="/assets/logo-ant.svg" alt="" />
+                                <span className="sign">卡狗妹后台管理系统</span>
+                            </Col>
+                            :''
+
+                    }
+                    
+                    <Col span={hasBrandCrumb ? 12 : 24}>
+                        {console.log(this.props)}
+                        <span>欢迎，{this.props.userName}</span>
                         <a href="#">退出</a>
                     </Col>
                 </Row>
-                <Row className="brandcrumb">
-                    <Col span={4} className="breadcrumb-title">
-                        首页
-                    </Col>
-                    <Col span={20} className="weather">
-                        <span className="date">{this.state.sysTime}</span>
-                        <span className="weather-img">
-                            {this.state.province}
-                        </span>
-                        <span className="weather-detail">{this.state.weather}</span>
-                    </Col>
-                </Row>
+                {
+                    hasBrandCrumb ? '' :
+                        <Row className="brandcrumb" >
+                            <Col span={4} className="breadcrumb-title">
+                                首页
+                            </Col>
+                            <Col span={20} className="weather">
+                                <span className="date">{this.state.sysTime}</span>
+                                <span className="weather-img">
+                                    {this.state.province}
+                                </span>
+                                <span className="weather-detail">{this.state.weather}</span>
+                            </Col>
+                        </Row>
+                        
+                }
             </div>
         )
     }
